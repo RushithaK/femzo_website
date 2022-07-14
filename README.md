@@ -19,7 +19,7 @@ This Application helps users get to know of how to tackle abuses and assaults wh
         - Model: Model is going to act as the interface of your data. It is responsible for maintaining data. It is the logical data structure behind the entire application and is represented by a database (generally relational databases such as MySql, Postgres).
         - View: The View is the user interface — what you see in your browser when you render a website. It is represented by HTML/CSS/Javascript and Jinja files.
         - ViewModel: A template consists of static parts of the desired HTML output as well as some special syntax describing how dynamic content will be inserted.
-     ![alt text](![image](https://user-images.githubusercontent.com/72972263/178907510-14065785-eb76-4583-b0fa-7a1b60466d47.png))
+     ![alt text](!https://media.geeksforgeeks.org/wp-content/uploads/20210606092225/image.png)
 
 - ### Libraries for fetching data from Apis
     - #### Retrofit

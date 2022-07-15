@@ -2,18 +2,22 @@
 # Description
 A Women Safety Based Web Application,  which helps women in handling all kinds of unsafe situations.
 # Abstract
-The safety of women is a concern of increasing urgency in all the countries across the world.
+- The safety of women is a concern of increasing urgency in all the countries across the world.
 The primary issue in the handling of these cases by the police lies in constraints preventing
-them from responding quickly to calls of distress. These constraints include not knowing the
+them from responding quickly to calls of distress.
+- These constraints include not knowing the
 location of the crime, and not knowing the crime is occurring at all: at the victim's end,
-reaching the police assuredly and discreetly is a challenge. The atrocities against the women
+reaching the police assuredly and discreetly is a challenge. 
+- The atrocities against the women
 can be brought to an end with the help of our product "FEMZO". This device is a security
 system, specially designed for women in distress.Our product basically helps the victim to
-file a complaint and immediately she will be assisted by the organizations. To verify the
+file a complaint and immediately she will be assisted by the organizations.
+- To verify the
 gender of the user the system inquires them to upload any Government Identity Proof. Also,
 on an emergency note the victim can have a conversation with the organization. Users can
 list out all the tactics shown in the website, which will be helpful for them in uncertain times.
-They can locate the help centres and can get the details of them. Chat feature is provided in
+They can locate the help centres and can get the details of them.
+- Chat feature is provided in
 the system for user’s queries with the organization. The system consists of this special feature
 where the user can enter the destination and it will predict and will intimate whether the place
 is safe or not. Once the victim files the complaint a confirmation message will sent to the

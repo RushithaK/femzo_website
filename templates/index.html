@@ -1,0 +1,875 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Femzo</title>
+  <link rel="icon" href="../static/images/logo1.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="{% static 'css/main.css' %}">
+  <!-- Google fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Varela+Round&display=swap"
+    rel="stylesheet">
+  <!-- Font awesome -->
+  <script src="https://kit.fontawesome.com/dbed6b6114.js" crossorigin="anonymous"></script>
+  <!-- Owl carousel -->
+  <!-- <link rel="stylesheet" href="OwlCarousel2-2.3.4/dist/assets/owl.carousel.css">
+  <link rel="stylesheet" href="OwlCarousel2-2.3.4/dist/assets/owl.theme.default.css"> -->
+  <link rel="stylesheet" href="../static/css/owl.carousel.css">
+  <link rel="stylesheet" href="../static/css/owl.theme.default.css">
+  
+</head>
+
+<body>
+
+  <!-- header -->
+  <section id="home" class="header">
+    <div class="header-wrapper">
+      <!-- navbar -->
+      <div class="navbar-wrapper container">
+        <nav class="navbar">
+          <div class="brand-and-toggler container">
+            <a href="" class="navbar-brand"> <img src="../static/images/logo1.png"
+                style="height: 2.5rem; width:2.5rem; border-radius:50%; object-fit: fill;"></a>
+            <button type="button" class="navbar-toggler" id="navbar-toggler">
+              <div class="bar1"></div>
+              <div class="bar2"></div>
+              <div class="bar3"></div>
+            </button>
+          </div>
+        </nav>
+
+        <div class="navbar-collapse">
+          <ul class="navbar-nav">
+            {% if gen %}
+            <li class="nav-item">
+              <a href="{% url 'dispprof' %}" class="my-nav-link">Profile</a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'chatwithorgs' %}" class="my-nav-link">Chat with organizations</a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'safeplacepredict' %}" class="my-nav-link">Safe Place Prediction</a>
+            </li>
+            {% endif %}
+            {% if org %}  
+            <li class="nav-item">
+              <a href="{% url 'orgaprofile' %}" class="my-nav-link">Profile</a>
+            </li>
+            {% endif %}
+            <li class="nav-item">
+              <a href="{% url 'policedetails' %}" class="my-nav-link">Police Details</a>
+            </li>
+            {% if gen %}
+            <li class="nav-item">
+              <a href="{% url 'filecomplaintform' %}" class="my-nav-link">File a complaint</a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'sendCurrLoc' %}" class="my-nav-link">Send Loc</a>
+            </li>
+            {% endif %}
+            <li class="nav-item">
+              <a href="{% url 'tactics' %}" class="my-nav-link">Tactics</a>
+            </li>
+
+            <li class="nav-item">
+              <a href="#contact" id="contact-link" class="my-nav-link">Contact Us</a>
+            </li>
+            {% if username %}  
+            <li class="nav-item">
+              <a href="{% url 'logoutUser' %}" class="my-nav-link">Logout</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a href="{% url 'loginpage' %}" class="my-nav-link">Sign up/ Sign in</a>
+            </li>
+            {% endif %}
+
+            
+
+          </ul>
+        </div>
+      </div>
+      <!-- end of navbar -->
+
+
+
+      <div class="header-banner container">
+        <h1 class="banner-title">we are here to protect you!</h1>
+        <!-- <p class = "text-normal">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque expedita quis nihil aperiam nostrum enim officia laboriosam autem quia laborum?
+          </p> -->
+        <!-- <div class = "banner-btns">
+            <button type = "button" class = "banner-btn">Get Started!</button>
+            <button type = "button" class = "banner-btn">Learn More</button>
+          </div> -->
+      </div>
+    </div>
+  </section>
+  <!-- end of header -->
+
+  <!-- numbers -->
+  <section class="numbers py-4">
+    <div class="container">
+      <div class="numbers-wrapper">
+        <!-- single item -->
+        <div class="single-number">
+          <span class="numbers-icon">
+            <i class="fas fa-globe-asia"></i>
+          </span>
+          <h2 class="number-text">{{total}}</h2>
+          <p class="text-normal">Total Complaints Filed</p>
+        </div>
+        <!-- end of single item -->
+        <!-- single item -->
+        <div class="single-number">
+          <span class="numbers-icon">
+            <i class="fas fa-trophy"></i>
+          </span>
+          <h2 class="number-text">{{solved}}</h2>
+          <p class="text-normal">Solved Cases</p>
+        </div>
+        <!-- end of single item -->
+        <!-- single item -->
+        <div class="single-number">
+          <span class="numbers-icon">
+            <i class="fas fa-spinner"></i>
+          </span>
+          <h2 class="number-text">{{current}}</h2>
+          <p class="text-normal">Current</p>
+        </div>
+        <!-- end of single item -->
+        <!-- single item -->
+        <div class="single-number">
+          <span class="numbers-icon">
+            <i class="far fa-file-excel"></i>
+          </span>
+          <h2 class="number-text">{{notapproached}}</h2>
+          <p class="text-normal">Un Solved</p>
+        </div>
+        <!-- end of single item -->
+      </div>
+    </div>
+  </section>
+  <!-- end of numbers -->
+
+  <!-- about section -->
+  <section class="about py-4" id="about">
+    <div class="container">
+      <div class="title">
+        <h2 class="title-text">welcome to Femzo!</h2>
+        <div class="title-underline"></div>
+      </div>
+
+      <div class="about-wrapper">
+        <!-- single item -->
+        <div class="single-about overlay">
+          <span><i class="fas fa-question"></i></span>
+          <h2 class="text-large">What is "Femzo"?</h2>
+          <p class="text-light">Femzo is a web application which we have developed to provide a platform for women/girls who  get threating calls and face physicals and mental abuses in day-to-day life and social media. </p>
+        </div>
+        <!-- end of single item -->
+
+        <!-- single item -->
+        <div class="single-about overlay">
+          <span><i class="fas fa-hands-helping"></i></span>
+          <h2 class="text-large">Why should you use "Femzo"?</h2>
+          <p class="text-light">With the help of this website victims or their companions can (FAC) file an instant complaint by registering and uploading necessary documents, an immediate rescue team will be appointed. She can contact or approach the nearby police stations through our website.</p>
+        </div>
+        <!-- end of single item -->
+
+        <!-- single item -->
+        <div class="single-about overlay">
+          <span><i class="fas fa-laugh-beam"></i></span>
+          <h2 class="text-large">Pros of "Femzo"</h2>
+          <p class="text-light">i) File an instant complaint & get an immediate response.<br> ii) Learn self-defence & rescue yourselves from unsafe situations. <br>iii) Get police station details.</p>
+        </div>
+        <!-- end of single item -->
+      </div>
+    </div>
+  </section>
+  <!-- end of about section -->
+
+  <!-- portfolio section -->
+  <!-- <section class="portfolio py-4" id="portfolio">
+    <div class="container">
+      <div class="title">
+        <h2 class="title-text">featured works</h2>
+        <div class="title-underline"></div>
+      </div>
+
+      <div class="portfolio-wrapper">
+        <-->
+        <!-- <div class="single-portfolio">
+          <img src="../static/images/feat-img-1.jpg" alt="portfolio images">
+          <div class="single-portfolio-content">
+            <h3>category</h3>
+            <h2>Lorem ipsum dolor</h2>
+            <div class="portfolio-icons">
+              <span class="sq-icon">
+                <i class="fas fa-external-link-alt"></i>
+              </span>
+              <span class="sq-icon">
+                <i class="fas fa-search"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="single-portfolio">
+          <img src="../static/images/feat-img-2.jpg" alt="portfolio images">
+          <div class="single-portfolio-content">
+            <h3>category</h3>
+            <h2>Lorem ipsum dolor</h2>
+            <div class="portfolio-icons">
+              <span class="sq-icon">
+                <i class="fas fa-external-link-alt"></i>
+              </span>
+              <span class="sq-icon">
+                <i class="fas fa-search"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="single-portfolio">
+          <img src="../static/images/feat-img-3.jpg" alt="portfolio images">
+          <div class="single-portfolio-content">
+            <h3>category</h3>
+            <h2>Lorem ipsum dolor</h2>
+            <div class="portfolio-icons">
+              <span class="sq-icon">
+                <i class="fas fa-external-link-alt"></i>
+              </span>
+              <span class="sq-icon">
+                <i class="fas fa-search"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="single-portfolio">
+          <img src="../static/images/feat-img-4.jpg" alt="portfolio images">
+          <div class="single-portfolio-content">
+            <h3>category</h3>
+            <h2>Lorem ipsum dolor</h2>
+            <div class="portfolio-icons">
+              <span class="sq-icon">
+                <i class="fas fa-external-link-alt"></i>
+              </span>
+              <span class="sq-icon">
+                <i class="fas fa-search"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="single-portfolio">
+          <img src="../static/images/feat-img-5.jpg" alt="portfolio images">
+          <div class="single-portfolio-content">
+            <h3>category</h3>
+            <h2>Lorem ipsum dolor</h2>
+            <div class="portfolio-icons">
+              <span class="sq-icon">
+                <i class="fas fa-external-link-alt"></i>
+              </span>
+              <span class="sq-icon">
+                <i class="fas fa-search"></i>
+              </span>
+            </div>
+          </div>
+        </div> -->
+        <!-- end of single item -->
+        <!-- single item -->
+        <!-- <div class="single-portfolio">
+          <img src="../static/images/feat-img-6.jpg" alt="portfolio images">
+          <div class="single-portfolio-content">
+            <h3>category</h3>
+            <h2>Lorem ipsum dolor</h2>
+            <div class="portfolio-icons">
+              <span class="sq-icon">
+                <i class="fas fa-external-link-alt"></i>
+              </span>
+              <span class="sq-icon">
+                <i class="fas fa-search"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+       
+      </div>
+    </div> -->
+  <!-- </section> -->
+  
+
+  <!-- services section -->
+  <section class="services py-4" id="services">
+    <div class="container">
+      <div class="title">
+        <h2 class="title-text">what we offer</h2>
+        <div class="title-underline"></div>
+      </div>
+
+      <div class="services-wrapper">
+        <!-- single item -->
+        <div class="single-service overlay">
+          <span class="services-icon">
+            <i class="fas fa-file-signature"></i>
+          </span>
+          <div class="single-service-content">
+            <h2 class="text-large">filing complaint</h2>
+            <p class="text-light"></p>
+          </div>
+        </div>
+        <!-- end of single item -->
+        <!-- single item -->
+        <div class="single-service overlay">
+          <span class="services-icon">
+            <i class="fas fa-comments"></i>
+          </span>
+          <div class="single-service-content">
+            <h2 class="text-large">Instant Chat with Security Organization</h2>
+            <p class="text-light"></p>
+          </div>
+        </div>
+        <!-- end of single item -->
+        <!-- single item -->
+        <div class="single-service overlay">
+          <span class="services-icon">
+            <i class="fas fa-users-cog"></i>
+          </span>
+          <div class="single-service-content">
+            <h2 class="text-large">Info of Help Centers</h2>
+            <p class="text-light"></p>
+          </div>
+        </div>
+        <!-- end of single item -->
+        <!-- single item -->
+        <div class="single-service overlay">
+          <span class="services-icon">
+            <i class="fas fa-shield-virus"></i>
+          </span>
+          <div class="single-service-content">
+            <h2 class="text-large">Protecting user's/victim's info</h2>
+            <p class="text-light"></p>
+          </div>
+        </div>
+        <!-- end of single item -->
+        <!-- single item -->
+        <div class="single-service overlay">
+          <span class="services-icon">
+            <i class="fas fa-newspaper"></i>
+          </span>
+          <div class="single-service-content">
+            <h2 class="text-large">Blogs on Tactics for women safety</h2>
+            <p class="text-light"></p>
+          </div>
+        </div>
+        <!-- end of single item -->
+        <!-- single item -->
+        <div class="single-service overlay">
+          <span class="services-icon">
+            <i class="fas fa-flask"></i>
+          </span>
+          <div class="single-service-content">
+            <h2 class="text-large">place is safe or not?</h2>
+            <p class="text-light"></p>
+          </div>
+        </div>
+        <!-- end of single item -->
+      </div>
+    </div>
+  </section>
+  <!-- end of services section -->
+
+  <!-- features -->
+  <section class="features py-4">
+    <div class="container">
+      <div class="features-wrapper">
+        <!-- feature left -->
+        <div class="features-left">
+          <div class="title">
+            <h2 class="title-text">How to Use "Femzo"</h2>
+            <div class="title-underline"></div>
+          </div>
+
+          <div class="features-left-content">
+            
+            <ul class="features-list">
+              <li>
+                <span class="feat-list-icon">
+                  <i class="fas fa-hand-point-right"></i>
+                </span>
+                <span class="text-light">To begin with, Register your self by clicking on sign up/sign in menu</span>
+              </li>
+              <li>
+                <span class="feat-list-icon">
+                  <i class="fas fa-hand-point-right"></i>
+                </span>
+                <span class="text-light">After registering, login into your account with valid credentials.</span>
+              </li>
+              <li>
+                <span class="feat-list-icon">
+                  <i class="fas fa-hand-point-right"></i>
+                </span>
+                <span class="text-light">Once, you have logged in, navigate yourself to "File a Complaint" menu.</span>
+              </li>
+              <li>
+                <span class="feat-list-icon">
+                  <i class="fas fa-hand-point-right"></i>
+                </span>
+                <span class="text-light">Fill in all the details as required. Once all the required info is filled.
+                  Click on "Submit" button.</span>
+              </li>
+              <li>
+                <span class="feat-list-icon">
+                  <i class="fas fa-hand-point-right"></i>
+                </span>
+                <span class="text-light">After submitting the form you will get an confirmation on your registered
+                  E-mail and Phone number.</span>
+              </li>
+              <li>
+                <span class="feat-list-icon">
+                  <i class="fas fa-hand-point-right"></i>
+                </span>
+                <span class="text-light">ASAP, a police/she team will assist you.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- features right -->
+        <div class="features-right">
+          <div class="features-slider owl-carousel owl-theme">
+            <div class="item">
+              <img src="../static/css/images/register.jpg" alt="features image">
+            </div>
+            <div class="item">
+              <img src="../static/css/images/login.png" alt="features image">
+            </div>
+            <div class="item">
+              <img src="../static/css/images/file a compalint.png" alt="features image">
+            </div>
+            <div class="item">
+              <img src="../static/css/images/submit.png" alt="features image">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- end of features -->
+
+
+
+  <!-- prices section -->
+  <!-- <section class="prices py-4" id="prices">
+    <div class="container">
+      <div class="title">
+        <h2 class="title-text">Our Special Plan</h2>
+        <div class="title-underline"></div>
+      </div> -->
+
+      <!-- <div class="prices-wrapper"> -->
+        <!-- single item -->
+        <!-- <div class="single-price overlay">
+          <h2 class="text-uppercase">basic plan</h2>
+          <div class="price-box">
+            <h2 class="price-text">
+              $16 <span>/month</span>
+            </h2>
+          </div>
+          <ul class="pricing-list">
+            <li class="text-light">1GB disk space</li>
+            <li class="text-light">100 email account</li>
+            <li class="text-light">24/24 support</li>
+          </ul>
+          <button type="button" class="prices-btn">Purchase now</button>
+        </div> -->
+        <!-- end of single item -->
+        <!-- single item -->
+        <!-- <div class="single-price overlay">
+          <h2 class="text-uppercase">silver plan</h2>
+          <div class="price-box">
+            <h2 class="price-text">
+              $30 <span>/month</span>
+            </h2>
+          </div>
+          <ul class="pricing-list">
+            <li class="text-light">1GB disk space</li>
+            <li class="text-light">100 email account</li>
+            <li class="text-light">24/24 support</li>
+          </ul>
+          <button type="button" class="prices-btn">Purchase now</button>
+        </div> -->
+        <!-- end of single item -->
+        <!-- single item -->
+        <!-- <div class="single-price overlay">
+          <h2 class="text-uppercase">gold plan</h2>
+          <div class="price-box">
+            <h2 class="price-text">
+              $45 <span>/month</span>
+            </h2>
+          </div>
+          <ul class="pricing-list">
+            <li class="text-light">1GB disk space</li>
+            <li class="text-light">100 email account</li>
+            <li class="text-light">24/24 support</li>
+          </ul>
+          <button type="button" class="prices-btn">Purchase now</button>
+        </div> -->
+        <!-- end of single item -->
+      <!-- </div>
+    </div>
+  </section> -->
+  <!-- end of prices section -->
+
+  <!-- testimonial -->
+  <section class="testimonial py-4">
+    <div class="container">>
+      <div class="testimonial-wrapper owl-carousel owl-theme">
+        <!-- single item -->
+        <div class="item">
+          <div class="single-test-top">
+            <img src="../static/css/images/lawyer.png" alt="testimonial image">
+            <div>
+              <h2 class="text-large">INDIRA JAISING-A lawyer and human rights activist</h2>
+              <h2 class="text-uppercase">web designer</h2>
+            </div>
+          </div>
+          <p class="text-normal">Indira Jaising has been called ‘formidable’ by many especially when recounting her efforts in framing of the Domestic Violence Act</p>
+        </div>
+        <!-- end of single item -->
+        <!-- single item -->
+        <div class="item">
+          <div class="single-test-top">
+            <img src="../static/css/images/KirubaMunusamy.jpg" alt="testimonial image">
+            <div>
+              <h2 class="text-large">Kiruba Munusamy</h2>
+              <h2 class="text-uppercase">web designer</h2>
+            </div>
+          </div>
+          <p class="text-normal">Despite facing threats and roadblocks from the justice system, Supreme Court advocate Kiruba Munusamy continues to fight against the atrocities against Dalit women, death penalty, the dangerous practice of manual scavenging, and state repression in the country.</p>
+        </div>
+        <!-- end of single item -->
+        <!-- single item -->
+        <div class="item">
+          <div class="single-test-top">
+            <img src="../static/css/images/ArundhatiRoy.jpg" alt="testimonial image">
+            <div>
+              <h2 class="text-large">Arundhati Roy</h2>
+              <h2 class="text-uppercase">web designer</h2>
+            </div>
+          </div>
+          <p class="text-normal">'They are trying to keep me destabilised. Anybody who says anything is in danger'</p>
+        </div>
+        <!-- end of single item -->
+        <!-- single item -->
+        <div class="item">
+          <div class="single-test-top">
+            <img src="../static/css/images/kamla bhasin.png" alt="testimonial image">
+            <div>
+              <h2 class="text-large">Kamla Bhasin</h2>
+              <h2 class="text-uppercase">(1946-2021), renowned feminist, poet and social</h2>
+            </div>
+          </div>
+          <p class="text-normal">A Feminist Who Lived By the Slogan 'Rise, Not Fall, in Love'</p>
+        </div>
+        <!-- end of single item -->
+      </div>
+    </div>
+  </section>
+  <!-- end of testimonial -->
+
+  <!-- team section -->
+  <section class="team py-4" id="team">
+    <div class="container">
+      <div class="title">
+        <h2 class="title-text">Our team</h2>
+        <div class="title-underline"></div>
+      </div>
+
+      <div class="team-wrapper">
+        <!-- single item -->
+        <div class="single-team overlay">
+          <div class="team-img">
+            <img src="../static/images/team-img-3.jpg" alt="team image">
+
+            <div class="team-icons">
+              <span class="sq-icon">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+              </span>
+              <span class="sq-icon">
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+              </span>
+              <span class="sq-icon">
+                <a href="#"><i class="fab fa-twitter"></i></a>
+              </span>
+            </div>
+          </div>
+          <div class="team-footer">
+            <h2 class="text-large">K. Rushitha</h2>
+            <h2 class="text-uppercase">Front-end Dev</h2>
+          </div>
+        </div>
+        <!-- end of single item -->
+        <!-- single item -->
+        <div class="single-team overlay">
+          <div class="team-img">
+            <img src="../static/images/team-img-2.jpg" alt="team image">
+
+            <div class="team-icons">
+              <span class="sq-icon">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+              </span>
+              <span class="sq-icon">
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+              </span>
+              <span class="sq-icon">
+                <a href="#"><i class="fab fa-twitter"></i></a>
+              </span>
+            </div>
+          </div>
+          <div class="team-footer">
+            <h2 class="text-large">K. Krishna</h2>
+            <h2 class="text-uppercase">Back-end Dev</h2>
+          </div>
+        </div>
+        <!-- end of single item -->
+        <!-- single item -->
+        <div class="single-team overlay">
+          <div class="team-img">
+            <img src="../static/images/test-img-2.jpg" alt="team image">
+
+            <div class="team-icons">
+              <span class="sq-icon">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+              </span>
+              <span class="sq-icon">
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+              </span>
+              <span class="sq-icon">
+                <a href="#"><i class="fab fa-twitter"></i></a>
+              </span>
+            </div>
+          </div>
+          <div class="team-footer">
+            <h2 class="text-large">U. Sneha</h2>
+            <h2 class="text-uppercase">Database Dev</h2>
+          </div>
+        </div>
+        <!-- end of single item -->
+      </div>
+    </div>
+  </section>
+  <!-- end of team section -->
+
+  <!-- blog section -->
+  <section class="blog py-4" id="blog">
+    <div class="container">
+      <div class="title">
+        <h2 class="title-text">recents uploads</h2>
+        <div class="title-underline"></div>
+      </div>
+
+      <div class="blog-wrapper">
+        <!-- single item -->
+        <div class="single-blog">
+          <img src="../static/css/images/thumbs/masonry/women4.jpg" alt="blog image">
+          <div class="single-blog-content">
+            <div class="single-blog-top">
+              <span>
+                <i class="fas fa-user"></i> J. Root
+              </span>
+              <span>
+                <i class="fas fa-clock"></i> 11 June
+              </span>
+              <span>
+                <i class="fas fa-comment"></i> 2021
+              </span>
+            </div>
+
+            <h2 class="text-large">"Hope My Story Inspires"</h2>
+            <p class="text-light">A woman who accused her co-worker and boyfriend of sexual harassment at the peak of India's #MeToo movement last year has spoken about her experience in a powerful 'Humans of Bombay' Facebook post</p>
+            <a href="{% url 'tactics' %}" class="btn-link">Read More</a>
+          </div>
+        </div>
+        <!-- end of single item -->
+        <!-- single item -->
+        <div class="single-blog">
+          <img src="../static/css/images/thumbs/masonry/women13.jpg" alt="blog image">
+          <div class="single-blog-content">
+            <div class="single-blog-top">
+              <span>
+                <i class="fas fa-user"></i> B. Robert Van
+              </span>
+              <span>
+                <i class="fas fa-clock"></i> 1 Oct
+              </span>
+              <span>
+                <i class="fas fa-comment"></i> 2021
+              </span>
+            </div>
+
+            <h2 class="text-large">SAFETY TIPS FOR WOMEN.</h2>
+            <p class="text-light">To help women feel empowered and prepared for whatever life may throw their way, we have created the five-point safety plan listed below.</p>
+            <a href="{% url 'tactics' %}" class="btn-link">Read More</a>
+          </div>
+        </div>
+        <!-- end of single item -->
+        <!-- single item -->
+        <div class="single-blog">
+          <img src="../static/css/images/thumbs/masonry/women7.jpg" alt="blog image">
+          <div class="single-blog-content">
+            <div class="single-blog-top">
+              <span>
+                <i class="fas fa-user"></i> John Doe
+              </span>
+              <span>
+                <i class="fas fa-clock"></i> 18 Dec
+              </span>
+              <span>
+                <i class="fas fa-comment"></i> 2020
+              </span>
+            </div>
+
+            <h2 class="text-large">Reasons Everyone Should Learn Self-Defense.</h2>
+            <p class="text-light">Honestly, we barely know what will happen the next moment or the next day. Be that as it may, our life is the most precious thing that ever happens so, why to take a risk? Instead enroll a self-defense class to handle every situation in life .</p>
+            <a href="{% url 'tactics' %}" class="btn-link">Read More</a>
+          </div>
+        </div>
+        <!-- end of single item -->
+      </div>
+    </div>
+  </section>
+  <!-- end of blog section -->
+
+  <!-- contact section -->
+  <section class="contact py-4" id="contact">
+    <div class="container">
+      <div class="title">
+        <h2 class="title-text">get in touch</h2>
+        <div class="title-underline"></div>
+      </div>
+
+      <div class="contact-wrapper">
+        <!-- contact info -->
+        <div class="contact-info">
+          <!-- single item -->
+          <div class="single-contact">
+            <span>
+              <i class="fas fa-phone"></i>
+            </span>
+            <h2 class="text-large">Phone</h2>
+            <p class="text-light">222333444</p>
+          </div>
+          <!-- end of single item -->
+          <!-- single item -->
+          <div class="single-contact">
+            <span>
+              <i class="fas fa-envelope"></i>
+            </span>
+            <h2 class="text-large">Email</h2>
+            <p class="text-light">femzoforall@gmail.com</p>
+          </div>
+          <!-- end of single item -->
+          <!-- single item -->
+          <div class="single-contact">
+            <span>
+              <i class="fas fa-map-marker-alt"></i>
+            </span>
+            <h2 class="text-large">Location</h2>
+            <p class="text-light">Ibrahim Bagh, Hyderabad</p>
+          </div>
+          <!-- end of single item -->
+        </div>
+
+        <form action="{% url 'contactus' %}" method="post" class="form">
+          {% csrf_token %}
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Name" name="name">
+            <input type="text" class="form-control" placeholder="Email" name="email">
+          </div>
+          <input type="text" class="form-control" placeholder="Subject" name="subject">
+          <textarea rows="4" placeholder="Message" name="mssg"></textarea>
+          <input type="submit" class="btn-form" value="Send Message">
+        </form>
+      </div>
+    </div>
+  </section>
+  <!-- end of contact section -->
+
+
+  <footer>
+    <div class="footer-content">
+      <h2>Femzo</h2>
+      <span class="footer-span-content"><p>Website build for women safety.</p></span>
+      <ul class="footer-icons">
+        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+        <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+        <li><a href="#"><i class="fab fa-youtube"></i></i></a></li>
+        <li><a href="#"><i class="fab fa-google-plus"></i></a></li>
+        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+        <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+      </ul>
+    </div>
+    <div class="divider">
+      <hr>
+    </div>
+    <div class="footer-bottom">
+      <p>copyright &copy; <span class="copyright-date"></span>.all rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- footer -->
+  <!-- <footer class = "footer py-3">
+      <div class = "container">
+        <div class = "footer-wrapper">
+          <h2 class = "footer-title">Femzo</h2>
+
+          <div class = "footer-social-icons">
+            <span class = "sq-icon">
+              <i class = "fab fa-facebook"></i>
+            </span>
+            <span class = "sq-icon">
+              <i class = "fab fa-twitter"></i>
+            </span>
+            <span class = "sq-icon">
+              <i class = "fab fa-google-plus"></i>
+            </span>
+            <span class = "sq-icon">
+              <i class = "fab fa-instagram"></i>
+            </span>
+            <span class = "sq-icon">
+              <i class = "fab fa-linkedin"></i>
+            </span>
+            <span class = "sq-icon">
+              <i class = "fab fa-youtube"></i>
+            </span>
+          </div>
+
+          <p class = "footer-text">
+            copyright &copy; <span class = "copyright-date"></span>. all rights reserved.
+          </p>
+        </div>
+      </div>
+    </footer> -->
+  <!-- end of footer -->
+
+  <!--########################-->
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+    crossorigin="anonymous"></script>
+  <!-- Owl carousel -->
+  <!-- <script src="OwlCarousel2-2.3.4/dist/owl.carousel.js"></script> -->
+  <script src="../static/js/owl.carousel.js"></script>
+  <!-- JS -->
+  <script src="../static/js/script.js"></script>
+
+</body>
+
+</html>

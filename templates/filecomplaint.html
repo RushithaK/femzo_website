@@ -1,0 +1,174 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>File Complaint Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="../static/images/logo1.png">
+    <script>
+        function clearForm(){
+            document.getElementById("firstName").innerHTML=""
+            document.getElementById("lastName").innerHTML=""
+            document.getElementById("location").innerHTML=""
+            document.getElementById("contactNo").innerHTML=""
+            document.getElementById("email").innerHTML=""
+            document.getElementById("subject").innerHTML=""
+            document.getElementById("idno").innerHTML=""
+            document.getElementById("message").innerHTML=""
+
+        }
+    </script>
+    
+
+    <!-- Font Icon -->
+    <!-- <link rel="stylesheet" href="../static/css/fonts/material-icon/css/material-design-iconic-font.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+
+    <!-- Main css -->
+    <!-- <link rel="stylesheet" href="../static/css/fc_style.css"> -->
+    <link rel="stylesheet" href="../static/css/fc_style.css">
+
+    <!--  auto detect location -->
+  <script src="../static/js/fc_location_script.js"></script>
+  <script src="../static/js/fc_main.js"></script>
+  
+</head>
+<body>
+
+    <div class="main">
+        <div class="container">
+            <div class="signup-content">
+                <div class="signup-img">
+                    <img src="../static/css/images/form-img.jpg" alt="">
+                    <div class="signup-img-content">
+                        <h2><i class="fas fa-phone-alt"></i></h2>
+                        <p>100 (Police)</p>
+                        <p>72727 27272 (She Team)</p>
+                        <br><br>
+                        <h2><i class="fas fa-envelope"></i></h2>
+                        <p>femzoforall@gmail.com</p>
+                    </div>
+                </div>
+                
+                <div class="signup-form">
+                    
+                    <form action="{% url 'filecomplaintform' %}" method="POST" class="register-form" id="register-form" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        
+                        <button style="margin-bottom: 30px;background-color:lightseagreen"  value="Home" class="submit"><a style="text-decoration: none;color:white" href="{% url 'home' %}">Home</a></button>        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <div class="form-input">
+                                    <label for="firstName" class="required">First name</label>
+                                    <input type="text" required name="firstName" id="firstName" />
+                                </div>
+                                <div class="form-input">
+                                    <label for="lastName" class="required">Last name</label>
+                                    <input type="text" required name="lastName" id="lastName" />
+                                </div>
+                                <div class="form-input">
+                                    <label for="company" class="required">Contact No.</label>
+                                    <input type="text" required name="contactNo" id="contactNo" />
+                                </div>
+                                <div class="form-input">
+                                    <label for="email" class="required">Email</label>
+                                    <input type="text" required name="email" id="email" />
+                                </div>
+                                <div class="form-input">
+                                    <label for="location" class="required">Location</label>
+                                    <input type="text" required name="location" id="location" />
+                                </div>
+                                <input onclick="getLocation()" type="button" value="auto-detect" class="submit" id="location-btn" style="margin-bottom: 30px;" />
+                                
+                                <div class="form-radio">
+                                    <div class="label-flex">
+                                        <label for="Gender">Gender</label>
+                                    </div>
+                                    <div class="form-radio-group">            
+                                        <div class="form-radio-item">
+                                            <input type="radio" name="Gender" value="male" id="Male" checked>
+                                            <label for="Male">Male</label>
+                                            <span class="check"></span>
+                                        </div>
+                                        <div class="form-radio-item">
+                                            <input type="radio" name="Gender" value="female" id="Female">
+                                            <label for="Female">Female</label>
+                                            <span class="check"></span>
+                                        </div>
+                                        <div class="form-radio-item">
+                                            <input type="radio" name="Gender" value="others" id="Others">
+                                            <label for="Others">Others</label>
+                                            <span class="check"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-input">
+                                    <label for="subject" class="required">Subject</label>
+                                    <input type="text" required name="subject" id="subject" />
+                                </div>
+                                <div class="form-select">
+                                    <div class="label-flex">
+                                        <label for="proofType">Select Organization</label>
+                                        <a href="#" class="form-link">note about proofs</a>
+                                    </div>
+                                    <div class="select-list">
+                                        <select name="org" id="proofType">
+                                            <option class="list-item" value="none">Select one</option>
+                                            {% for o in orgs %}
+                                            <option class="list-item" value={{o}}>{{o}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-input">
+                                    <div class="label-flex">
+                                        <label for="idno" class="required">Proof ID No.</label>
+                                        <a href="#" class="form-link">what is proof id no?</a>
+                                    </div>
+                                    <input type="text" required name="idno" id="idno" />
+                                </div>
+                                <div class="form-input">
+                                    <label for="id" class="required">Proof</label>
+                                    <!-- accept="iapplication/pdf, image/*" -->
+                                    <input class="submit" type="file" name="id" id="id"  accept="iapplication/pdf" style="width: 450px;"/>
+                                </div>
+                                <div class="form-input">
+                                    <label for="images">Images</label>
+                                    <input class="submit" type="file"  name="image" id="image" accept="image/*"  style="width: 450px;"/>
+                                </div>
+                                <div class="form-input">    
+                                    <label for="vedios">Vedios</label>
+                                    <input class="submit" type="file"  name="vedio" id="vedio" accept="vedio/*" style="width: 450px;" />    
+                                </div>
+                                <div class="form-input">
+                                    <label for="payable">Any Message</label>
+                                    <input type="text" name="message" id="message" />
+                                </div>
+                                <div class="form-submit">
+                                    <input type="submit" value="Submit" class="submit" id="submit" name="submit" />
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- JS -->
+    
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/additional-methods.js"></script>
+    
+</body>
+</html>

@@ -1,0 +1,117 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <style>
+        .container {
+            display: block;
+            column-gap: 50px;
+            justify-content: space-between;
+        }
+    </style>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Safe Place Prediction</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+
+                <li class="nav-item">
+                    <a class="nav-link active mr-5" href="{% url 'home' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <h5><a class="nav-link active ml-5 " href="">Safe Palce Prediction</a></h5>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <form action="{% url 'safeplacepredict' %}" method="post">
+            {% csrf_token %}
+
+            <div class="row mt-3 mb-5 ">
+                <div class="col-md-4 offset-md-2">
+                    <label for="validationDefault01">Enter your city</label>
+                    <input type="text" class="form-control" name="textlocn" id="validationDefault01" placeholder="City"
+                        required>
+                    <label for="validationDefault02">Enter the zone</label>
+                    <input type="text" class="form-control" name="textZone" id="validationDefault02" placeholder="Zone"
+                        required>
+
+                    <label class="input-group" for="inputGroupSelect01">Time Of The Day</label>
+                    <select name="menu_time" class="custom-select" id="inputGroupSelect01">
+                        <option selected value="">Choose one</option>
+                        <option value="Morning">Morning</option>
+                        <option value="Afternoon">Afternoon</option>
+                        <option value="Evening">Evening</option>
+                        <option value="Night">Night</option>
+                    </select>
+
+                    <label class="input-group" for="inputGroupSelect01">Rate the Area regard to the No Of People</label>
+                    <select name="freq" class="custom-select" id="inputGroupSelect01">
+                        <option selected value="">Choose one</option>
+                        <option value="Low">Low</option>
+                        <option value="Medium">Medium</option>
+                        <option value="High">High</option>
+                    </select>
+
+                    <label class="input-group" for="inputGroupSelect01">Traveling</label>
+                    <select name="married" class="custom-select" id="inputGroupSelect01">
+                        <option selected value="">Choose one</option>
+                        <option value="Married">Married</option>
+                        <option value="No">Not Yet Married</option>
+                    </select>
+
+                    <label class="input-group" for="inputGroupSelect01">Traveling</label>
+                    <select name="travel" class="custom-select" id="inputGroupSelect01">
+                        <option selected value="">Choose one</option>
+                        <option value="Alone">Alone</option>
+                        <option value="Family">Family</option>
+                        <option value="Friends">Friends</option>
+                        <option value="Others">Others</option>
+                    </select>
+                    <button class="btn btn-primary mt-3" type="submit">Submit form</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+    {% if result %}
+    <div class="jumbotron">
+        <div class="container">
+            <h1 class="display-3">{{result}}!!</h1>
+            <p>We are hopping that your were able to get some idea on the place your are about to go!</p>
+            <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+
+<div class="container mt-5 pt-4">
+    
+    <div class="col-6 mx-auto">
+        <h3 class="text-center">Register</h3>
+        <form method="post">
+            {% csrf_token %}
+            <div class="row">
+                <div class="form-group col-12">
+                    <input type="text" placeholder="Email" aria-describedby="emailHelp" class="form-control" name="email" id="">
+                    <small id="emailHelp" class="form-text text-muted">If you are an organization use .org at the end </small>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-12">
+                    <input type="text" placeholder="Name" class="form-control" name="name" id="">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-12">
+                    <input type="text" placeholder="PassWord" class="form-control" name="password" id="">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-12">
+                    <input type="text" placeholder="Phone Number" class="form-control" name="phnum" id="">
+                </div>
+            </div>
+
+            <p>Already have account <a href="{% url 'loginpage' %}">Login</a></p>
+            <button class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,121 @@
+<!-- <!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Complaint Summary</title>
+    <style>
+        li{
+            font-size: large;
+        }
+    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+
+<body>
+
+    <div class="row mt-3 mb-5 ">
+        <div class="col-md-8 offset-md-2">
+            <ul class="list-group">
+                <li class="list-group-item active">Complaint Details</li>
+                <li class="list-group-item"><div class="fw-bold">CID: </div> {{cid}}</li>
+                <li class="list-group-item"><div class="fw-bold">Organization Require: </div>{{orgreq}}</li>
+                <li class="list-group-item"><div class="fw-bold">Solved By: </div>{{solvedby}}</li>
+                <li class="list-group-item"><div class="fw-bold">Hired By: </div>{{hiredby}}</li>
+                <li class="list-group-item"><div class="fw-bold">First Name: </div>{{firstName}}</li>
+                <li class="list-group-item"><div class="fw-bold">Last Name: </div>{{lastName}}</li>
+                <li class="list-group-item"><div class="fw-bold">Email: </div>{{email}}</li>
+                <li class="list-group-item"><div class="fw-bold">Conatct No.: </div>{{contactNo}}</li>
+                <li class="list-group-item"><div class="fw-bold">ID No.: </div>{{idno}}</li>
+                <li class="list-group-item"><div class="fw-bold">Subject: </div>{{subject}}</li>
+                <li class="list-group-item"><div class="fw-bold">Location:</div> {{location}}</li>
+                <li class="list-group-item"><div class="fw-bold">Status:</div> {{status}}</li>
+                <li class="list-group-item"><div class="fw-bold">Gender:</div> {{gen}}</li>
+                <li class="list-group-item"><div class="fw-bold">Message:</div> {{message}}</li>
+                 </ul>
+            <hr>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+        integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js"
+        integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+</body>
+
+</html> -->
+<html>
+    <head>
+        <style>
+            table {
+              font-family: arial, sans-serif;
+              border-collapse: collapse;
+              width: 100%;
+            }
+            
+            td, th {
+              border: 1px solid #dddddd;
+              text-align: left;
+              padding: 8px;
+            }
+            
+            tr:nth-child(even) {
+              background-color: #dddddd;
+            }
+            </style>
+    </head>
+    <body>
+        <table>
+            <tr>
+                <th>CID</th>
+              <th>Contact Number</th>
+              <th>Email</th>
+            </tr>
+            <tr>
+                <td>{{cid}}</td>
+              <td>{{contactNo}}</td>
+              <td>{{email}}</td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+              
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Gender</th>
+              <th>IDNO</th>
+            </tr>
+            <tr>
+              
+              <td>{{firstName}}</td>
+              <td>{{lastName}}</td>
+              <td>{{gen}}</td>
+              <td>{{idno}}</td>
+            </tr>
+          </table>
+          <table>
+              <tr>
+                <th>Location</th>
+                <th>Message</th>
+                <th>Organization Required</th>
+                <th>Solved By</th>
+                <th>Status</th>
+              </tr>
+              <tr>
+                <td>{{location}}</td>
+                <td>{{message}}</td>
+                <td>{{orgreq}}</td>
+                <td>{{solvedby}}</td>
+                <td>{{status}}</td>
+              </tr>
+          </table>
+          
+
+    </body>
+</html>

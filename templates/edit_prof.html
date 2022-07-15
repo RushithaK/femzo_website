@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile</title>
+    <link rel="stylesheet" href="../static/css/edit_prof_main.css">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="container rounded bg-white mt-5 mb-5">
+        <div class="row">
+            <div class="col-md-3 border-right">
+                <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="250px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog"><span class="font-weight-bold">{{dobj.fname}}{{dobj.lname}}</span><span class="text-black-50">{{dobj.uemail}}</span><span> </span></div>
+            </div>
+            <div class="col-md-5 border-right">
+                <form action="{% url 'updateDetails' %}" method="POST" class="register-form" id="register-form" enctype="multipart/form-data">
+                    {% csrf_token %}
+                <div class="p-3 py-5">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="text-right">Profile Settings</h4>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-6"><label class="labels">Name</label><input required type="text" name="name" class="form-control" placeholder="name" value="{{pdata.name}}"></div>
+                        <!-- <div class="col-md-6"><label class="labels">Last Name</label><input required type="text" name="lname" class="form-control" value={{dobj.lname}} placeholder="surname"></div> -->
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-12"><label class="labels">Mobile Number</label><input required type="text" name="phnum" class="form-control" placeholder="enter phone number" value="{{pdata.phnum}}"></div>
+                        <div class="col-md-12"><label class="labels">Address Line </label><input required type="text" name="address" class="form-control" placeholder="enter address line " value="{{ pdata.address }}"></div>
+                        <div class="col-md-12"><label class="labels">Postcode</label><input type="text" class="form-control" name="postcode" placeholder="postcode" value="{{pdata.postcode}}"></div>
+                        <div class="col-md-12"><label class="labels">Email ID</label><input required type="text" name="email" class="form-control" placeholder="enter email id" value="{{pdata.uemail}}"></div>
+                        <div class="col-md-12"><label class="labels">Profession</label><input type="text" name="profession" class="form-control" placeholder="education" value="{{pdata.profession}}"></div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6"><label class="labels">Country</label><input required type="text" name="country" class="form-control" placeholder="country" value="{{pdata.country}}"></div>
+                        <div class="col-md-6"><label class="labels">State/Region</label><input type="text" name="state" class="form-control" placeholder="state" value="{{pdata.state}}" ></div>
+                    </div>
+                    <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit">Save Profile</button></div>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+</body>
+</html>

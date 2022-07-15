@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Profile</title>
+    <link rel="stylesheet" href="../static/css/prof_main.css">
+    <script defer type="text/javascript" src="../static/js/prof_script.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
+</head>
+<body>
+    <div class="container emp-profile">
+        <form method="post">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="profile-img">
+                        <img id="dsipimg" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt=""/>
+                        <div class="file btn btn-lg btn-primary">
+                            Change Photo
+                            <input id="propic" value="Change Photo" type="file" name="file" accept="images/jpg"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="profile-head">
+                                <h5>
+                                    {{pdata.name}}
+                                </h5>
+                                <h6>
+                                    {{pdata.profession}}
+                                </h6>
+                                <p class="proile-rating">No of cases Filed : <span>{{ casesfiled }}</span></p>
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true" onclick="TabChange(event,home)">About</a>
+                            </li>
+                            <!-- <li class="nav-item">
+                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false" onclick="TabChange(event,profile)">Emergency Contact</a>
+                            </li> -->
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="row"><a href="{% url 'editprof' %}"> Edit Profile</a></div>
+                    <div class="row"><a href="{% url 'addEmergencyContacts' %}">Edit Emergency Contacts list</a></div>
+                    
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="profile-work">
+                        <p>Return  To:</p>
+                        <a href="{% url 'home' %}">Home</a><br/>
+                        <a href="{% url 'tactics' %}">Tactics</a><br/>
+                        <a href="{% url 'policedetails' %}">Police Details</a><br>
+                        <a href="{% url 'viewcomplaints' %}">My Complaints</a><br/>
+                        
+                        <p>Latest On the Website</p>
+                        <a href="">File A Complaint on the Assault you have gone through</a><br/>
+                        <a href="">When you are travelling to a new place ,check whether the place you visit is safe  !</a><br/>
+                        <!-- <a href="">WordPress</a><br/>
+                        <a href="">WooCommerce</a><br/>
+                        <a href="">PHP, .Net</a><br/> -->
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="tab-content profile-tab" id="myTabContent">
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Name</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>{{pdata.name}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Email</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>{{pdata.uemail}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Phone</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>{{pdata.phnum}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Profession</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>{{pdata.profession}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Address</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>{{pdata.address}}</p>
+                                        </div>
+                                    </div>
+                            <div class="emergency" style="display: inline; vertical-align:center">
+                                <p style="margin-top: 5%;">Emergency Details </p>
+                            </div>
+                                <div class="container-lg">
+                                    <div class="row">
+                                        <div class="container">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Name</th>
+                                                        <th scope="col">Contact Number</th>
+                                                    </tr>
+                                                </thead>
+                                                {% for i in nums %}
+                                                <tbody>
+                                                    <tr>
+                                                        <td>{{ i.name }}</td>
+                                                        <td>{{ i.phnum }}</td>
+                                                    </tr>
+                                                </tbody>
+                                                {% endfor %}
+                                            </table>
+                                        </div>
+                                        
+                                        <!-- {% for i in nums %}
+                                        <div class="col-md-6">
+                                            <span> {{i.name}} : {{i.phnum}} </span>
+                                        </div>
+                                        {% endfor %} -->
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>           
+    </div>
+</body>
+</html>
+
+

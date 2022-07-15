@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Display Complaint Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'orgdashboard' %}">DashBoard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'home' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'orgaprofile' %}">Profile</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="row mt-3 mb-5 ">
+        <div class="col-md-8 offset-md-2">
+            <ul class="list-group">
+                <li class="list-group-item active" aria-current="true">Client Submitted Details</li>
+                <li class="list-group-item"><div class="fw-bold">CID: </div> {{c.cid}}</li>
+                <li class="list-group-item"><div class="fw-bold">Organization Require: </div>{{c.orgreq}}</li>
+                <li class="list-group-item"><div class="fw-bold">Solved By: </div>{{c.solvedby}}</li>
+                <li class="list-group-item"><div class="fw-bold">Hired By: </div>{{c.hiredby}}</li>
+                <li class="list-group-item"><div class="fw-bold">First Name: </div>{{c.firstName}}</li>
+                <li class="list-group-item"><div class="fw-bold">Last Name: </div>{{c.lastName}}</li>
+                <li class="list-group-item"><div class="fw-bold">Email: </div>{{c.email}}</li>
+                <li class="list-group-item"><div class="fw-bold">Conatct No.: </div>{{c.contactNo}}</li>
+                <li class="list-group-item"><div class="fw-bold">ID No.: </div>{{c.idno}}</li>
+                <li class="list-group-item"><a class="btn btn-primary" href="{{data.pdf}}" target="_blank">View Proof</a></li>
+                <li class="list-group-item"><div class="fw-bold">Subject: </div>{{c.subject}}</li>
+                <li class="list-group-item"><div class="fw-bold">Location:</div> {{c.location}}</li>
+                <li class="list-group-item"><div class="fw-bold">Status:</div> {{c.status}}</li>
+                <li class="list-group-item"><div class="fw-bold">Gender:</div> {{c.gen}}</li>
+                <li class="list-group-item"><div class="fw-bold">Message:</div> {{c.message}}</li>
+                {% if data.vid %}
+                <li class="list-group-item"> <a class="btn btn-primary" href="{{data.vid}}" target="_blank">View vedio</a></li>
+                {% endif %}
+                {% if data.img %}
+                <li class="list-group-item"><a class="btn btn-primary" href="{{data.img}}" target="_blank">View Image</a></li>
+                {% endif %}
+            </ul>
+            <hr>
+            {% if clientuploadedfiles %}
+            <ul class="list-group">
+                <li class="list-group-item active" aria-current="true">From Client</li>
+                {% for i in clientuploadedfiles %}
+                <li class="list-group-item"><a class="btn btn-primary" href="{{i.path}}" target="_blank">{{i.name}}</a><span class="mx-2 badge badge-secondary bg-warning">{{i.publishdate}}</span> </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <hr>
+            {% if uploadedfiles %}
+            <ul class="list-group">
+                <li class="list-group-item active" aria-current="true">My Uploads</li>
+                {% for i in uploadedfiles %}
+                <li class="list-group-item"><a class="btn btn-primary" href="{{i.path}}" target="_blank">{{i.name}}</a><span class="mx-2 badge badge-secondary bg-warning">{{i.publishdate}}</span> </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <hr>
+            <form action="{% url 'orgsubmitdoc' c.cid %}" enctype="multipart/form-data" method="POST">
+                {% csrf_token %}
+                <label class="form-label" for="customFile">Upload Document</label>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="basic-addon1">File Name</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="" name="filename" >
+                </div>
+                <input type="file" accept="iapplication/pdf" class="form-control" id="customFile" name="compdoc"/>
+                <input type="submit" class="btn btn-primary mt-2" value="Upload">
+            </form>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+        integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js"
+        integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

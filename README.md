@@ -12,8 +12,7 @@ reaching the police assuredly and discreetly is a challenge.
 can be brought to an end with the help of our product "FEMZO". This device is a security
 system, specially designed for women in distress.Our product basically helps the victim to
 file a complaint and immediately she will be assisted by the organizations.
-- To verify the
-gender of the user the system inquires them to upload any Government Identity Proof. Also,
+- Also,
 on an emergency note the victim can have a conversation with the organization. Users can
 list out all the tactics shown in the website, which will be helpful for them in uncertain times.
 They can locate the help centres and can get the details of them.

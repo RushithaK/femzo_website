@@ -33,7 +33,6 @@ This Application helps users get to know of how to tackle abuses and assaults wh
         - Model: Model is going to act as the interface of your data. It is responsible for maintaining data. It is the logical data structure behind the entire application and is represented by a database (SqlLite3,Firebase).
         - View: A view is a place where we put our business logic of the application. The view is a python function which is used to perform some business logic and return a response to the user
         - Template: A template is the user interface consists of static parts of the desired HTML output as well as some special syntax describing how dynamic content will be inserted.
-     ![alt text]((image)!https://media.geeksforgeeks.org/wp-content/uploads/20210606092225/image.png)
-
+     ![alt text](https://www.javatpoint.com/django/images/django-mvt-based-control-flow.png)
 
  

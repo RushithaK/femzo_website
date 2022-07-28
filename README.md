@@ -30,9 +30,9 @@ This Application helps users get to know of how to tackle abuses and assaults wh
 - ### MVT Architecture
     - Django is based on MVT (Model-View-Template) architecture. MVT is a software design pattern for developing a web application. It is a Python-based web framework which allows you to quickly create web application without all of the installation or dependency problems that you normally will find with other frameworks.
     - MVT Structure has the following three parts :
-        - Model: Model is going to act as the interface of your data. It is responsible for maintaining data. It is the logical data structure behind the entire application and is represented by a database (generally relational databases such as MySql, Postgres).
-        - View: The View is the user interface — what you see in your browser when you render a website. It is represented by HTML/CSS/Javascript and Jinja files.
-        - ViewModel: A template consists of static parts of the desired HTML output as well as some special syntax describing how dynamic content will be inserted.
+        - Model: Model is going to act as the interface of your data. It is responsible for maintaining data. It is the logical data structure behind the entire application and is represented by a database (SqlLite3,Firebase).
+        - View: A view is a place where we put our business logic of the application. The view is a python function which is used to perform some business logic and return a response to the user
+        - Template: A template is the user interface consists of static parts of the desired HTML output as well as some special syntax describing how dynamic content will be inserted.
      ![alt text]((image)!https://media.geeksforgeeks.org/wp-content/uploads/20210606092225/image.png)
 
 
